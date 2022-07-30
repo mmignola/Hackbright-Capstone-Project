@@ -28,7 +28,6 @@ def create_project(user, pattern_link, craft_type, proj_type, difficulty, free_p
         free_pattern = free_pattern,
         proj_status = proj_status
         )
-        
 
     return project
 
@@ -44,6 +43,12 @@ def create_update(project, percent_done, update_pic_path, notes):
         )
 
     return update
+
+
+def get_user_by_email(email):
+    """Return a user, given their email."""
+
+    return User.query.filter(User.email == email).first()
     
 
 if __name__ == '__main__':
