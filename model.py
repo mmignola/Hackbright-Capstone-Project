@@ -19,7 +19,7 @@ class User(db.Model):
     def __repr__(self):
         """Show info about user."""
 
-        return f"<User user_id={self.user_id} fname={self.fname} lname={self.lname} email={self.email}>"
+        return f"<User user_id={self.user_id} fname={self.fname} lname={self.lname} email={self.email} password={self.password}>"
 
     
 class Project(db.Model):
@@ -41,7 +41,7 @@ class Project(db.Model):
     def __repr__(self):
         """Show info about project."""
 
-        return f"<Project proj_id={self.proj_id} craft_type={self.craft_type}>"
+        return f"<Project proj_id={self.proj_id} user_id={self.user_id} pattern_link={self.pattern_link} craft_type={self.craft_type} proj_type={self.proj_type}>"
 
 
 class Update(db.Model):
@@ -60,7 +60,7 @@ class Update(db.Model):
     def __repr__(self):
         """Show info about project updates."""
 
-        return f"<Update update_id={self.update_id} proj_id={self.proj_id} percent_done={self.percent_done}>"
+        return f"<Update update_id={self.update_id} proj_id={self.proj_id} percent_done={self.percent_done} notes={self.notes}>"
 
 
 def connect_to_db(flask_app, db_uri="postgresql:///projects", echo=True):
