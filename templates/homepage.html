@@ -3,11 +3,6 @@
 
 <h1>Welcome!</h1>
 
-<h2>Navigation</h2>
-<ul>
-    <li><a href="/projects">View projects</a></li>
-</ul>
-
 
 <h2>Create an account</h2>
     <form action="/users" method="POST">
@@ -24,7 +19,21 @@
             Password <input type="text" name="password">
         </p>
         <p>
-            <input type="submit"
+            <input type="submit">
+        </p>
+    </form>
+
+
+<h2>Log In</h2>
+    <form action="/login" method="POST">
+        <p>
+            Email <input type="text" name="email">
+        </p>
+        <p>
+            Password <input type="text" name="password">
+        </p>
+        <p>
+            <input type="submit">
         </p>
     </form>
 

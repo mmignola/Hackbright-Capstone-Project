@@ -30,7 +30,7 @@ def create_user():
     user = crud.get_user_by_email(email)
 
     if user:
-        flash("An account already exists under this email.")
+        flash("An account already exists under that email.")
     else:
         user = crud.create_user(fname, lname, email, password)
         db.session.add(user)
@@ -38,6 +38,32 @@ def create_user():
         flash("Account created! Please log in.")
 
     return redirect('/')
+
+
+@app.route('/login', methods=['POST'])
+def process_login():
+    """Process user login."""
+
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = crud.get_user_by_email(email)
+
+    if not user or user.password != password:
+        flash("The email or password entered was incorrect.")
+    else:
+        session["user_email"] = user.email
+        flash(f"Welcome back, {user.fname}!")
+
+    return redirect('/user_profile')
+
+
+@app.route('/user_profile')
+def profile():
+    """View user's profile."""
+
+    return render_template('user_profile.html')
+
 
 
 
