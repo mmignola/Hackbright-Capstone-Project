@@ -37,6 +37,7 @@ for n in range(5):
     model.db.session.add(user)
 
     for n in range(5):
+        proj_name = f'project {n}'
         pattern_link = f'link{n}.com'
         craft_type = choice(craft_types)
         proj_type = choice(proj_types)
@@ -44,7 +45,7 @@ for n in range(5):
         free_pattern = randint(0, 1)
         proj_status = choice(proj_statuses)
 
-        project = crud.create_project(user, pattern_link, craft_type, proj_type, difficulty, free_pattern, proj_status)
+        project = crud.create_project(user, proj_name, pattern_link, craft_type, proj_type, difficulty, free_pattern, proj_status)
         model.db.session.add(project)
 
         percent_done = randint(0,100)

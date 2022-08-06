@@ -51,11 +51,11 @@ def process_login():
 
     if not user or user.password != password:
         flash("The email or password entered was incorrect.")
+        return redirect('/')
     else:
         session["user_email"] = user.email
         flash(f"Welcome back, {user.fname}!")
-
-    return redirect('/user_profile')
+        return redirect('/user_profile')
 
 
 @app.route('/user_profile')
@@ -65,11 +65,32 @@ def profile():
     return render_template('user_profile.html')
 
 
-# @app.route('/projects')
-# def create_project():
-#     """Create a new project."""
+@app.route('/projects', methods=["POST"])
+def create_project():
+    """Create a new project."""
 
+    logged_in_email = session.get('user_email')
 
+    if logged_in_email is None:
+        flash(f"You must be logged in to create a project.")
+    else:
+
+        user = crud.get_user_by_email(logged_in_email)
+        proj_name = request.form.get('proj_name')
+        pattern_link = request.form.get('pattern_link')
+        craft_type = request.form.get('craft_type')
+        proj_type = request.form.get('proj_type')
+        difficulty = request.form.get('difficulty')
+        free_pattern = request.form.get('free_pattern')
+        proj_status = request.form.get('proj_status')
+
+        project = crud.create_project(user, pattern_link, proj_name, craft_type, proj_type, difficulty, bool(free_pattern), proj_status)
+        db.session.add(project)
+        db.session.commit()
+
+        flash(f"Created project {proj_name}.")
+
+    return redirect('/user_profile')
 
 
 
