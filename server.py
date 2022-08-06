@@ -65,9 +65,14 @@ def profile():
     return render_template('user_profile.html')
 
 
+# @app.route('/projects')
+# def create_project():
+#     """Create a new project."""
+
+
+
 
 
 if __name__ == "__main__":
-    # DebugToolbarExtension(app)
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)

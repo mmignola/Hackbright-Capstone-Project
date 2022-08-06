@@ -3,4 +3,59 @@
 
 <h1>This is a profile page!</h1>
 
+<h2>Create a new project</h2>
+    <form action="/projects" method="POST">
+        <p>Project name <input type="text" name="proj_name"></p>
+        <p>Pattern link <input type="text" name="pattern_link"></p>
+
+        <p><label for="craft_type">Type of craft </label>
+        <select name="craft_type" id="craft_type">
+            <option value="crocheting">Crocheting</option>
+            <option value="cross_stitching">Cross stitching</option>
+            <option value="embroidery">Embroidery</option>
+            <option value="knitting">Knitting</option>
+            <option value="sewing">Sewing</option>
+            <option value="other">Other</option>
+        </select></p>
+
+        <p><label for="proj_type">Type of project </label>
+        <select name="proj_type" id="proj_type">
+            <option value="bag">Bag</option>
+            <option value="blanket">Blanket</option>
+            <option value="dress">Dress</option>
+            <option value="gloves">Gloves</option>
+            <option value="hat">Hat</option>
+            <option value="pants">Pants</option>
+            <option value="plush">Plush</option>
+            <option value="shirt">Shirt</option>
+            <option value="socks">Socks</option>
+            <option value="sweater">Sweater</option>
+            <option value="other">Other</option>
+        </select></p>
+
+        <p><label for="difficulty">Difficulty </label>
+            <select name="difficulty" id="difficulty">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="hard">Hard</option>
+                <option value="expert">Expert</option>
+            </select></p>
+
+        <p>Free or paid pattern 
+        <input type="radio" name="free_pattern" value="True" id="free_pattern">
+        <label for="free_pattern">Free</label>
+        
+        <input type="radio" name="free_pattern" value="False" id="paid_pattern">
+        <label for="paid_pattern">Paid</label></p>
+
+        <p><label for="proj_status">Project status </label>
+            <select name="proj_status" id="proj_status">
+                <option value="planned">Planned</option>
+                <option value="in_progress">In progress</option>
+                <option value="complete">Complete</option>
+            </select></p>
+            
+        <p><input type="submit"></p>
+    </form>
+
 </html>

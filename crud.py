@@ -16,12 +16,13 @@ def create_user(fname, lname, email, password):
     return user
 
 
-def create_project(user, pattern_link, craft_type, proj_type, difficulty, free_pattern, proj_status):
+def create_project(user, pattern_link, proj_name, craft_type, proj_type, difficulty, free_pattern, proj_status):
     """Create and return a new project."""
 
     project = Project(
         user = user, 
         pattern_link = pattern_link,
+        proj_name = proj_name,
         craft_type = craft_type, 
         proj_type = proj_type,
         difficulty = difficulty,

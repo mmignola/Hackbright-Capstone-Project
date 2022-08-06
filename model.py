@@ -29,6 +29,7 @@ class Project(db.Model):
 
     proj_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    proj_name = db.Column(db.String)
     pattern_link = db.Column(db.String)
     craft_type = db.Column(db.String)
     proj_type = db.Column(db.String)
@@ -41,7 +42,7 @@ class Project(db.Model):
     def __repr__(self):
         """Show info about project."""
 
-        return f"<Project proj_id={self.proj_id} user_id={self.user_id} pattern_link={self.pattern_link} craft_type={self.craft_type} proj_type={self.proj_type}>"
+        return f"<Project proj_id={self.proj_id} user_id={self.user_id} proj_name={self.proj_name} pattern_link={self.pattern_link} craft_type={self.craft_type} proj_type={self.proj_type}>"
 
 
 class Update(db.Model):
