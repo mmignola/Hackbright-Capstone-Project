@@ -58,6 +58,13 @@ def get_users_projects(email):
     user = get_user_by_email(email)
 
     return Project.query.filter(Project.user == user).all()
+
+
+def get_proj_by_id(proj_id):
+    """Returns a project given its id."""
+
+    return Project.query.get(proj_id)
+    
     
 
 if __name__ == '__main__':

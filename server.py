@@ -96,6 +96,17 @@ def create_project():
     return redirect('/user_profile')
 
 
+@app.route('/user_profile/<proj_id>')
+def show_project_details(proj_id):
+    """Show details of a given project."""
+
+    project = crud.get_proj_by_id(proj_id)
+
+    return render_template('project_details.html', project = project)
+
+
+
+
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)
