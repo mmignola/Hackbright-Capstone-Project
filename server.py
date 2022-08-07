@@ -62,7 +62,10 @@ def process_login():
 def profile():
     """View user's profile."""
 
-    return render_template('user_profile.html')
+    logged_in_email = session.get('user_email')
+    projects = crud.get_users_projects(logged_in_email)
+
+    return render_template('user_profile.html', projects = projects)
 
 
 @app.route('/projects', methods=["POST"])
@@ -91,7 +94,6 @@ def create_project():
         flash(f"Created project {proj_name}.")
 
     return redirect('/user_profile')
-
 
 
 if __name__ == "__main__":

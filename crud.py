@@ -50,8 +50,17 @@ def get_user_by_email(email):
     """Return a user, given their email."""
 
     return User.query.filter(User.email == email).first()
+
+
+def get_users_projects(email):
+    """Return a list of a given user's projects."""
+
+    user = get_user_by_email(email)
+
+    return Project.query.filter(Project.user == user).all()
     
 
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
+

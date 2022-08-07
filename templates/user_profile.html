@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
+{% block body %}
 
 <h1>This is a profile page!</h1>
 
@@ -54,8 +54,22 @@
                 <option value="in_progress">In progress</option>
                 <option value="complete">Complete</option>
             </select></p>
-            
+
         <p><input type="submit"></p>
     </form>
 
-</html>
+
+
+<h2>All projects</h2>
+<ul>
+{% for project in projects %}
+    <li>
+        <a href="/user_profile/{{ project.proj_id }}">
+            {{ project.proj_name }}
+        </a>
+    </li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}
