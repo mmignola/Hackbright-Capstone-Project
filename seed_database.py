@@ -55,4 +55,14 @@ for n in range(5):
         update = crud.create_update(project, percent_done, update_pic_path, notes)
         model.db.session.add(update)
 
+# Creates my account and default projects
+mads = crud.create_user('Madeleine', 'Mignola', 'madeleine.mignola@gmail.com', 'Catsnad12')
+model.db.session.add(mads)
+
+daisy_blanket = crud.create_project(mads, 'https://www.etsy.com/listing/933911629/charity-daisy-square-pattern-groovy?ref=yr_purchases', 'Flower Granny Square Blanket', 'crochet', 'blanket', 'intermediate', False, 'in progress')
+hue_shift = crud.create_project(mads, 'https://www.knitpicks.com/hue-shift-afghan/p/41112D', 'Hue Shift Afghan', 'knit', 'blanket', 'intermediate', False, 'complete')
+model.db.session.add(daisy_blanket, hue_shift)
+
+
+
 model.db.session.commit()
