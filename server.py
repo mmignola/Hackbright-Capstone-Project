@@ -64,8 +64,9 @@ def profile():
 
     logged_in_email = session.get('user_email')
     projects = crud.get_users_projects(logged_in_email)
+    user = crud.get_user_by_email(logged_in_email)
 
-    return render_template('user_profile.html', projects = projects)
+    return render_template('user_profile.html', projects = projects, user = user)
 
 
 @app.route('/projects', methods=["POST"])
