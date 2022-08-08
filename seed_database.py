@@ -59,8 +59,8 @@ for n in range(5):
 mads = crud.create_user('Madeleine', 'Mignola', 'madeleine.mignola@gmail.com', 'Catsnad12')
 model.db.session.add(mads)
 
-daisy_blanket = crud.create_project(mads, 'https://www.etsy.com/listing/933911629/charity-daisy-square-pattern-groovy?ref=yr_purchases', 'Flower Granny Square Blanket', 'crochet', 'blanket', 'intermediate', False, 'in progress')
-hue_shift = crud.create_project(mads, 'https://www.knitpicks.com/hue-shift-afghan/p/41112D', 'Hue Shift Afghan', 'knit', 'blanket', 'intermediate', False, 'complete')
+daisy_blanket = crud.create_project(mads, 'https://www.etsy.com/listing/933911629/charity-daisy-square-pattern-groovy?ref=yr_purchases', 'Flower Granny Square Blanket', 'Crocheting', 'Blanket', 'Intermediate', False, 'In progress')
+hue_shift = crud.create_project(mads, 'https://www.knitpicks.com/hue-shift-afghan/p/41112D', 'Hue Shift Afghan', 'Knitting', 'Blanket', 'Intermediate', False, 'Complete')
 model.db.session.add(daisy_blanket, hue_shift)
 
 

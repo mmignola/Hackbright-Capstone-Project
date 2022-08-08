@@ -54,7 +54,7 @@ def process_login():
         return redirect('/')
     else:
         session["user_email"] = user.email
-        flash(f"Welcome back, {user.fname}!")
+        flash(f"Login successful.")
         return redirect('/user_profile')
 
 
