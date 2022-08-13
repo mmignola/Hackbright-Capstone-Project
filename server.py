@@ -88,6 +88,10 @@ def create_project():
         free_pattern = request.form.get('free_pattern')
         proj_status = request.form.get('proj_status')
 
+        if "http" not in pattern_link:
+            flash("Please try again with a valid link.")
+            return redirect('/user_profile')
+
         project = crud.create_project(user, pattern_link, proj_name, craft_type, proj_type, difficulty, bool(free_pattern), proj_status)
         db.session.add(project)
         db.session.commit()
@@ -106,40 +110,26 @@ def show_project_details(proj_id):
     return render_template('project_details.html', project = project)
 
 
-@app.route('/search')
+@app.route('/filter')
 def filter_page():
-    """Shows filter options."""
+    """Show filter options."""
 
     return render_template('filter_projects.html')
 
 
-@app.route('/filter', methods=["POST"])
+@app.route('/filter_results', methods=['POST'])
 def filter_results():
     """Generates filtered list of user's projects."""
 
-    logged_in_email = session.get('user_email')
-    user = crud.get_user_by_email(logged_in_email)
-
-    craft_type = request.form.get('craft_type')
+    email = session.get('user_email')
+    
+    craft_type = request.form.get("craft_type")
     proj_type = request.form.get('proj_type')
     difficulty = request.form.get('difficulty')
-    free_pattern = request.form.get('free_pattern')
     proj_status = request.form.get('proj_status')
 
-    if craft_type == 'Any':
-        craft_type = '%%'
-    if proj_type == 'Any':
-        proj_type = '%%'
-    if difficulty == 'Any':
-        difficulty = '%%'
-    if free_pattern == 'Any':
-        free_pattern = '%%'
-    if proj_status == 'Any':
-        proj_status = '%%'
-
-    filtered_projects = crud.filter_projects(email, craft_type, proj_type, free_pattern, proj_status)
-
-    return redirect('/search')
+    filtered_projects = crud.filter_projects(email, craft_type, proj_type, difficulty, proj_status)
+    return render_template('filter_results.html', filtered_projects = filtered_projects)
 
 
 

@@ -19,10 +19,10 @@ model.db.create_all()
 fnames = ['John', 'Joe', 'Mary', 'Beth', 'Chris']
 lnames = ['Smith', 'Meyer', 'Briggs', 'Green', 'Adams']
 
-craft_types = ['knit', 'crochet', 'sew']
-proj_types = ['sweater', 'scarf', 'hat', 'blanket', 'gloves']
-difficulties = ['easy', 'intermediate', 'medium', 'hard']
-proj_statuses = ['future', 'in progress', 'complete']
+craft_types = ['Knitting', 'Crocheting', 'Sewing', 'Quilting', 'Embroidery']
+proj_types = ['Sweater', 'Scarf', 'Hat', 'Blanket', 'Bag']
+difficulties = ['Easy', 'Intermediate', 'Medium', 'Hard']
+proj_statuses = ['Future', 'In progress', 'Complete']
 
 
 
@@ -61,8 +61,10 @@ model.db.session.add(mads)
 
 daisy_blanket = crud.create_project(mads, 'https://www.etsy.com/listing/933911629/charity-daisy-square-pattern-groovy?ref=yr_purchases', 'Flower Granny Square Blanket', 'Crocheting', 'Blanket', 'Intermediate', False, 'In progress')
 hue_shift = crud.create_project(mads, 'https://www.knitpicks.com/hue-shift-afghan/p/41112D', 'Hue Shift Afghan', 'Knitting', 'Blanket', 'Intermediate', False, 'Complete')
-model.db.session.add(daisy_blanket, hue_shift)
+tote_bag = crud.create_project(mads, 'https://www.youtube.com/watch?v=rcZKM9JUEwQ', 'Tote Bag', 'Sewing', 'Bag', 'Beginner', True, 'Complete')
 
-
+model.db.session.add(daisy_blanket)
+model.db.session.add(hue_shift)
+model.db.session.add(tote_bag)
 
 model.db.session.commit()

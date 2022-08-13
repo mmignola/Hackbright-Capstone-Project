@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<h2>Filter results</h2>
+<ul>
+{% for filtered_project in filtered_projects %}
+    <li>
+        <a href="/user_profile/{{ filtered_project.proj_id }}">
+            {{ filtered_project.proj_name }}
+        </a>
+    </li>
+{% endfor %}
+</ul>
+
+<p><a href="/filter">Back to filter</a></p>
+<p><a href="/user_profile">Back to profile</a></p>
+
+{% endblock %}

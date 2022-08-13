@@ -66,10 +66,12 @@ def get_proj_by_id(proj_id):
     return Project.query.get(proj_id)
     
 
-def filter_projects(user, craft_type, proj_type, difficulty, free_pattern, proj_status):
+def filter_projects(email, craft_type, proj_type, difficulty, proj_status):
     """Returns a list of projects based on selected filters."""
 
-    return Project.query.filter(Project.user == user, Project.craft_type.like(craft_type), Project.proj_type.like(proj_type), Project.difficulty.like(difficulty), Project.free_pattern.like(free_pattern), Project.proj_status.like(proj_status))
+    user = get_user_by_email(email)
+
+    return Project.query.filter(Project.user == user, Project.craft_type.like(craft_type), Project.proj_type.like(proj_type), Project.difficulty.like(difficulty), Project.proj_status.like(proj_status)).all()
 
 
 

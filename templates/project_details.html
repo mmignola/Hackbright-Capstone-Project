@@ -3,7 +3,7 @@
 
 <h1>{{ project.proj_name }}</h1>
 
-<a href="{{ project.pattern_link}}">Pattern Link</a>
+<a href="{{ project.pattern_link }}">Pattern Link</a>
 <p>Craft: {{ project.craft_type }}</p>
 <p>Project type: {{ project.proj_type }}</p>
 <p>Difficulty: {{ project.difficulty }}</p>
@@ -14,5 +14,7 @@
     Paid
     {% endif %} </p>
 <p>Project status: {{ project.proj_status }}</p>
+
+<p><a href="/user_profile">Back to profile</a></p>
 
 {% endblock %}

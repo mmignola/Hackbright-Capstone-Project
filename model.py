@@ -29,13 +29,13 @@ class Project(db.Model):
 
     proj_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
-    proj_name = db.Column(db.String)
-    pattern_link = db.Column(db.String)
-    craft_type = db.Column(db.String)
-    proj_type = db.Column(db.String)
-    difficulty = db.Column(db.String)
-    free_pattern = db.Column(db.Boolean)
-    proj_status = db.Column(db.String)
+    proj_name = db.Column(db.String, nullable = False)
+    pattern_link = db.Column(db.String, nullable = False)
+    craft_type = db.Column(db.String, nullable = False)
+    proj_type = db.Column(db.String, nullable = False)
+    difficulty = db.Column(db.String, nullable = False)
+    free_pattern = db.Column(db.Boolean, nullable = False)
+    proj_status = db.Column(db.String, nullable = False)
 
     user = db.relationship("User", backref="projects")
 
