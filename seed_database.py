@@ -48,11 +48,12 @@ for n in range(5):
         project = crud.create_project(user, pattern_link, proj_name, craft_type, proj_type, difficulty, free_pattern, proj_status)
         model.db.session.add(project)
 
+        update_name = 'update'
         percent_done = randint(0,100)
         update_pic_path = "link"
         notes = "this is an update"
 
-        update = crud.create_update(project, percent_done, update_pic_path, notes)
+        update = crud.create_update(project, update_name, percent_done, update_pic_path, notes)
         model.db.session.add(update)
 
 # Creates my account and default projects

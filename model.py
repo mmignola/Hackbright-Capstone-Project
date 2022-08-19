@@ -52,6 +52,7 @@ class Update(db.Model):
 
     update_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
     proj_id = db.Column(db.Integer, db.ForeignKey("projects.proj_id"))
+    update_name = db.Column(db.String)
     percent_done = db.Column(db.Integer)
     update_pic_path = db.Column(db.String)
     notes = db.Column(db.Text)
@@ -61,7 +62,7 @@ class Update(db.Model):
     def __repr__(self):
         """Show info about project updates."""
 
-        return f"<Update update_id={self.update_id} proj_id={self.proj_id} percent_done={self.percent_done} notes={self.notes}>"
+        return f"<Update update_id={self.update_id} proj_id={self.proj_id} update_name={self.update_name} percent_done={self.percent_done} notes={self.notes}>"
 
 
 def connect_to_db(flask_app, db_uri="postgresql:///projects", echo=True):

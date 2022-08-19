@@ -33,11 +33,12 @@ def create_project(user, pattern_link, proj_name, craft_type, proj_type, difficu
     return project
 
 
-def create_update(project, percent_done, update_pic_path, notes):
+def create_update(project, update_name, percent_done, update_pic_path, notes):
     """Create and return a new update."""
 
     update = Update(
         project = project, 
+        update_name = update_name
         percent_done = percent_done,
         update_pic_path = update_pic_path,
         notes = notes

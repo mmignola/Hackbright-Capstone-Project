@@ -110,6 +110,13 @@ def show_project_details(proj_id):
     return render_template('project_details.html', project = project)
 
 
+# @app.route('/updates', methods=['POST'])
+# def create_update():
+#     """Create a new project update."""
+
+
+
+
 @app.route('/filter')
 def filter_page():
     """Show filter options."""
