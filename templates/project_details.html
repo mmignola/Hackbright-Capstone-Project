@@ -18,7 +18,7 @@
 <p><a href="/user_profile">Back to profile</a></p>
 
 <h2>Create update</h2>
-    <form action='/updates' method="POST">
+    <form action="/updates/{{ project.proj_id }}" method="POST">
         <p>Update name <input type="text" name="update_name" </p>
         <p>Progress <input type="range" min="1" max="100" class="slider" name="percent_done" ></p> 
         <p><label for="notes">Notes</label></p>
