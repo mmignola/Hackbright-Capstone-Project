@@ -110,11 +110,20 @@ def show_project_details(proj_id):
     return render_template('project_details.html', project = project)
 
 
-# @app.route('/updates', methods=['POST'])
-# def create_update():
-#     """Create a new project update."""
+@app.route('/updates', methods=['POST'])
+def create_update(proj_id):
+    """Create a new project update."""
+    
+    project = crud.get_proj_by_id(proj_id)
+    update_name = request.form.get('update_name')
+    percent_done = request.form.get('percent_done')
+    notes = request.form.get('notes')
 
+    update = crud.create_update(project, update_name, percent_done, notes)
 
+    flash(f"Created update {update_name}.")
+
+    return redirect('/user_profile/<proj_id>')
 
 
 @app.route('/filter')

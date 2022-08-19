@@ -54,7 +54,7 @@ class Update(db.Model):
     proj_id = db.Column(db.Integer, db.ForeignKey("projects.proj_id"))
     update_name = db.Column(db.String)
     percent_done = db.Column(db.Integer)
-    update_pic_path = db.Column(db.String)
+    # update_pic_path = db.Column(db.String)
     notes = db.Column(db.Text)
 
     project = db.relationship("Project", backref="updates")

@@ -50,10 +50,10 @@ for n in range(5):
 
         update_name = 'update'
         percent_done = randint(0,100)
-        update_pic_path = "link"
+        # update_pic_path = "link"
         notes = "this is an update"
 
-        update = crud.create_update(project, update_name, percent_done, update_pic_path, notes)
+        update = crud.create_update(project, update_name, percent_done, notes)
         model.db.session.add(update)
 
 # Creates my account and default projects
