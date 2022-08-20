@@ -27,4 +27,15 @@
         <p><input type="submit"></p>
     </form>
 
+<h2>Updates</h2>
+<ul>
+    {% for update in updates %}
+        <li>
+            <a href="/update/{{ update.update_id }}">
+                {{ update.update_name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
 {% endblock %}

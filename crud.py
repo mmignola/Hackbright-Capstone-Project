@@ -67,6 +67,19 @@ def get_proj_by_id(proj_id):
     return Project.query.get(proj_id)
     
 
+def get_update_by_id(update_id):
+    """Returns an update given its id."""
+
+    return Update.query.get(update_id)
+
+def get_updates_by_proj(proj_id):
+    """Returns updates for a given project."""
+
+    project = get_proj_by_id(proj_id)
+
+    return Update.query.filter(Update.project == project).all()
+
+
 def filter_projects(email, craft_type, proj_type, difficulty, proj_status):
     """Returns a list of projects based on selected filters."""
 

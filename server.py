@@ -106,8 +106,9 @@ def show_project_details(proj_id):
     """Show details of a given project."""
 
     project = crud.get_proj_by_id(proj_id)
+    updates = crud.get_updates_by_proj(proj_id)
 
-    return render_template('project_details.html', project = project)
+    return render_template('project_details.html', project = project, updates = updates)
 
 
 @app.route('/updates/<proj_id>', methods=['POST'])
@@ -125,8 +126,16 @@ def create_update(proj_id):
 
     flash(f"Created update {update_name}.")
 
-    return redirect('/user_profile')
+    return redirect(f'/user_profile/{proj_id}')
 
+
+@app.route('/update/<update_id>')
+def show_update_details(update_id):
+    """Show details of a project update."""
+
+    update = crud.get_update_by_id(update_id)
+
+    return render_template('update_details.html', update = update)
 
 
 @app.route('/filter')
