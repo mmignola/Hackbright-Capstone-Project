@@ -117,7 +117,7 @@ def create_update(proj_id):
 
     project = crud.get_proj_by_id(proj_id)
     update_name = request.form.get('update_name')
-    percent_done = request.form.get('percent_done')
+    percent_done = int(request.form.get('percent_done'))
     notes = request.form.get('notes')
 
     update = crud.create_update(project, update_name, percent_done, notes)
