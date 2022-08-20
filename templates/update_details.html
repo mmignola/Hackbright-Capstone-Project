@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<h1>update page woooo</h1>
+
+<h1>{{ update.update_name }}</h1>
+<p>Percent done: {{ update.percent_done }}</p>
+<p>Notes: {{ update.notes }}</p>
+
+<p><a href="/user_profile/{{ update.project.proj_id }}">Back to project</a></p>
+
+{% endblock %}
