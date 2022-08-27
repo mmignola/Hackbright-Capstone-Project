@@ -66,7 +66,11 @@ def profile():
     projects = crud.get_users_projects(logged_in_email)
     user = crud.get_user_by_email(logged_in_email)
 
-    return render_template('user_profile.html', projects = projects, user = user)
+    if logged_in_email is None:
+        flash("You must be logged in to view a profile.")
+        return redirect('/')
+    else:
+        return render_template('user_profile.html', projects = projects, user = user)
 
 
 @app.route('/projects', methods=["POST"])
@@ -105,10 +109,15 @@ def create_project():
 def show_project_details(proj_id):
     """Show details of a given project."""
 
+    logged_in_email = session.get('user_email')
     project = crud.get_proj_by_id(proj_id)
     updates = crud.get_updates_by_proj(proj_id)
 
-    return render_template('project_details.html', project = project, updates = updates)
+    if logged_in_email is None:
+        flash("You must be logged in to view projects.")
+        return redirect('/')
+    else:
+        return render_template('project_details.html', project = project, updates = updates)
 
 
 @app.route('/updates/<proj_id>', methods=['POST'])
@@ -133,16 +142,28 @@ def create_update(proj_id):
 def show_update_details(update_id):
     """Show details of a project update."""
 
+    logged_in_email = session.get('user_email')
+
     update = crud.get_update_by_id(update_id)
 
-    return render_template('update_details.html', update = update)
+    if logged_in_email is None:
+        flash("You must be logged in to view project updates.")
+        return redirect('/')
+    else:
+        return render_template('update_details.html', update = update)
 
 
 @app.route('/filter')
 def filter_page():
     """Show filter options."""
+    
+    logged_in_email = session.get('user_email')
 
-    return render_template('filter_projects.html')
+    if logged_in_email is None:
+        flash("You must be logged in to filter projects.")
+        return redirect('/')
+    else:
+        return render_template('filter_projects.html')
 
 
 @app.route('/filter_results', methods=['POST'])
@@ -156,9 +177,21 @@ def filter_results():
     difficulty = request.form.get('difficulty')
     proj_status = request.form.get('proj_status')
 
-    filtered_projects = crud.filter_projects(email, craft_type, proj_type, difficulty, proj_status)
-    return render_template('filter_results.html', filtered_projects = filtered_projects)
+    if email is None:
+        flash("You must be logged in to view filter results.")
+        return redirect('/')
+    else:
+        filtered_projects = crud.filter_projects(email, craft_type, proj_type, difficulty, proj_status)
+        return render_template('filter_results.html', filtered_projects = filtered_projects)
 
+
+@app.route('/log_out')
+def log_out():
+    """Logs the user out."""
+
+    session['user_email'] = None
+
+    return redirect('/')
 
 
 if __name__ == "__main__":
