@@ -153,6 +153,22 @@ def show_update_details(update_id):
         return render_template('update_details.html', update = update)
 
 
+@app.route('/update/<update_id>/delete')
+def delete_update(update_id):
+    """Delete a project update."""
+
+    update = crud.get_update_by_id(update_id)
+    update_name = update.update_name
+    proj_id = update.project.proj_id
+
+    db.session.delete(update)
+    db.session.commit()
+
+    flash(f"Deleted update {update_name}.")
+    return redirect(f'/user_profile/{proj_id}')
+
+
+
 @app.route('/filter')
 def filter_page():
     """Show filter options."""
@@ -187,7 +203,7 @@ def filter_results():
 
 @app.route('/log_out')
 def log_out():
-    """Logs the user out."""
+    """Log the user out."""
 
     session['user_email'] = None
 
