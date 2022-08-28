@@ -139,6 +139,21 @@ def delete_project(proj_id):
     return redirect('/user_profile')
 
 
+@app.route('/user_profile/<proj_id>/edit')
+def edit_project_form(proj_id):
+    """View project edit form."""
+    
+    project = crud.get_proj_by_id(proj_id)
+
+    return render_template('edit_project.html', project = project)
+
+
+# @app.route('/user_profile/<proj_id>/execute_edits')
+# def edit_project(proj_id):
+#     """Update the details of a project."""
+
+
+
 @app.route('/updates/<proj_id>', methods=['POST'])
 def create_update(proj_id):
     """Create a new project update."""
