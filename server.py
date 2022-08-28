@@ -120,6 +120,25 @@ def show_project_details(proj_id):
         return render_template('project_details.html', project = project, updates = updates)
 
 
+@app.route('/user_profile/<proj_id>/delete')
+def delete_project(proj_id):
+    """Delete a project."""
+
+    project = crud.get_proj_by_id(proj_id)
+    proj_name = project.proj_name
+    updates = crud.get_updates_by_proj(proj_id)
+
+    db.session.delete(project)
+    db.session.commit()
+
+    for update in updates:
+        db.session.delete(update)
+        db.session.commit()
+
+    flash(f"Deleted project {proj_name}.")
+    return redirect('/user_profile')
+
+
 @app.route('/updates/<proj_id>', methods=['POST'])
 def create_update(proj_id):
     """Create a new project update."""
