@@ -148,9 +148,37 @@ def edit_project_form(proj_id):
     return render_template('edit_project.html', project = project)
 
 
-# @app.route('/user_profile/<proj_id>/execute_edits')
-# def edit_project(proj_id):
-#     """Update the details of a project."""
+@app.route('/user_profile/<proj_id>/execute_edits', methods=["POST"])
+def edit_project(proj_id):
+    """Update the details of a project."""
+
+    logged_in_email = session.get('user_email')
+    project = crud.get_proj_by_id(proj_id)
+
+    if logged_in_email is None:
+        flash(f"You must be logged in to edit a project.")
+    else:
+        proj_name = request.form.get('proj_name')
+        pattern_link = request.form.get('pattern_link')
+        craft_type = request.form.get('craft_type')
+        proj_type = request.form.get('proj_type')
+        difficulty = request.form.get('difficulty')
+        free_pattern = bool(request.form.get('free_pattern'))
+        proj_status = request.form.get('proj_status') 
+
+    project.proj_name = proj_name
+    project.pattern_link = pattern_link
+    project.craft_type = craft_type
+    project.proj_type = proj_type
+    project.difficulty = difficulty
+    project.free_pattern = free_pattern
+    project.proj_status = proj_status
+
+    db.session.commit()
+
+    flash(f"Updated project {project.proj_name}.")
+
+    return redirect(f"/user_profile/{proj_id}")
 
 
 
