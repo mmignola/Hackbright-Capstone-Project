@@ -157,6 +157,7 @@ def edit_project(proj_id):
 
     if logged_in_email is None:
         flash(f"You must be logged in to edit a project.")
+        return redirect('/')
     else:
         proj_name = request.form.get('proj_name')
         pattern_link = request.form.get('pattern_link')
@@ -166,19 +167,19 @@ def edit_project(proj_id):
         free_pattern = bool(request.form.get('free_pattern'))
         proj_status = request.form.get('proj_status') 
 
-    project.proj_name = proj_name
-    project.pattern_link = pattern_link
-    project.craft_type = craft_type
-    project.proj_type = proj_type
-    project.difficulty = difficulty
-    project.free_pattern = free_pattern
-    project.proj_status = proj_status
+        project.proj_name = proj_name
+        project.pattern_link = pattern_link
+        project.craft_type = craft_type
+        project.proj_type = proj_type
+        project.difficulty = difficulty
+        project.free_pattern = free_pattern
+        project.proj_status = proj_status
 
-    db.session.commit()
+        db.session.commit()
 
-    flash(f"Updated project {project.proj_name}.")
+        flash(f"Edited project {project.proj_name}.")
 
-    return redirect(f"/user_profile/{proj_id}")
+        return redirect(f"/user_profile/{proj_id}")
 
 
 @app.route('/updates/<proj_id>', methods=['POST'])
@@ -235,6 +236,34 @@ def edit_udpate_form(update_id):
     update = crud.get_update_by_id(update_id)
 
     return render_template('edit_update.html', update = update)
+
+
+@app.route('/update/<update_id>/execute_edits', methods=["POST"])
+def edit_update(update_id):
+    """Update the details of a project update."""
+
+    logged_in_email = session.get('user_email')
+    update = crud.get_update_by_id(update_id)
+
+    if logged_in_email is None:
+        flash(f"You must be logged in to edit a project.")
+        return redirect('/')
+    else:
+        update_name = request.form.get('update_name')
+        percent_done = int(request.form.get('percent_done'))
+        notes = request.form.get('notes')
+
+        update.update_name = update_name
+        update.percent_done = percent_done
+        update.notes = notes
+
+        db.session.commit()
+
+        flash(f"Edited update {update.update_name}.")
+
+        return redirect(f"/update/{update.update_id}")
+
+
 
 
 @app.route('/filter')

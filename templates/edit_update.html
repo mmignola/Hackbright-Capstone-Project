@@ -3,7 +3,7 @@
 
 <h1>{{ update.update_name }}</h1>
 
-<form action="/updates/{{ update.update_id }}/execute_edits" method="POST">
+<form action="/update/{{ update.update_id }}/execute_edits" method="POST">
     <p>Update name <input type="text" name="update_name" </p>
     <p>Percent done <input type="number" name="percent_done" min="0" max="100" </p>
     <p><label for="notes">Notes</label></p>
