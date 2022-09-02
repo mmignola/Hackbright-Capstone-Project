@@ -225,15 +225,25 @@ def show_update_details(update_id):
 def delete_update(update_id):
     """Delete a project update."""
 
+    logged_in_email = session.get('user_email')
     update = crud.get_update_by_id(update_id)
     update_name = update.update_name
     proj_id = update.project.proj_id
 
-    db.session.delete(update)
-    db.session.commit()
+    if logged_in_email is None:
+        flash(f"You must be logged in to delete an update.")
+        return redirect('/')
 
-    flash(f"Deleted update {update_name}.")
-    return redirect(f'/user_profile/{proj_id}')
+    elif logged_in_email != update.project.user.email:
+        flash("You can not delete another user's update.")
+        return redirect('/user_profile')
+
+    else:
+        db.session.delete(update)
+        db.session.commit()
+
+        flash(f"Deleted update {update_name}.")
+        return redirect(f'/user_profile/{proj_id}')
 
 
 @app.route('/update/<update_id>/edit')
@@ -241,32 +251,35 @@ def edit_udpate_form(update_id):
     """View update edit form."""
 
     update = crud.get_update_by_id(update_id)
+    logged_in_email = session.get('user_email')
 
-    return render_template('edit_update.html', update = update)
+    if logged_in_email is None:
+        flash(f"You must be logged in to edit an update.")
+        return redirect('/')
+
+    elif logged_in_email != update.project.user.email:
+        flash("You can not edit another user's update.")
+        return redirect('/user_profile')
+
+    else:
+        return render_template('edit_update.html', update = update)
 
 
 @app.route('/update/<update_id>/execute_edits', methods=["POST"])
 def edit_update(update_id):
     """Update the details of a project update."""
 
-    logged_in_email = session.get('user_email')
     update = crud.get_update_by_id(update_id)
 
-    if logged_in_email is None:
-        flash(f"You must be logged in to edit a project.")
-        return redirect('/')
-    else:
-        update.update_name = request.form.get('update_name')
-        update.percent_done = int(request.form.get('percent_done'))
-        update.notes = request.form.get('notes')
+    update.update_name = request.form.get('update_name')
+    update.percent_done = int(request.form.get('percent_done'))
+    update.notes = request.form.get('notes')
 
-        db.session.commit()
+    db.session.commit()
 
-        flash(f"Edited update {update.update_name}.")
+    flash(f"Edited update {update.update_name}.")
 
-        return redirect(f"/update/{update.update_id}")
-
-
+    return redirect(f"/update/{update.update_id}")
 
 
 @app.route('/filter')
