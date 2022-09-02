@@ -182,6 +182,10 @@ def edit_project(proj_id):
     project.free_pattern = bool(request.form.get('free_pattern'))
     project.proj_status = request.form.get('proj_status') 
 
+    if "http" not in project.pattern_link:
+            flash("Please try again with a valid link.")
+            return redirect(f'/user_profile/{project.proj_id}/edit')
+
     db.session.commit()
 
     flash(f"Edited project {project.proj_name}.")
