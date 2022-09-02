@@ -159,21 +159,13 @@ def edit_project(proj_id):
         flash(f"You must be logged in to edit a project.")
         return redirect('/')
     else:
-        proj_name = request.form.get('proj_name')
-        pattern_link = request.form.get('pattern_link')
-        craft_type = request.form.get('craft_type')
-        proj_type = request.form.get('proj_type')
-        difficulty = request.form.get('difficulty')
-        free_pattern = bool(request.form.get('free_pattern'))
-        proj_status = request.form.get('proj_status') 
-
-        project.proj_name = proj_name
-        project.pattern_link = pattern_link
-        project.craft_type = craft_type
-        project.proj_type = proj_type
-        project.difficulty = difficulty
-        project.free_pattern = free_pattern
-        project.proj_status = proj_status
+        project.proj_name = request.form.get('proj_name')
+        project.pattern_link = request.form.get('pattern_link')
+        project.craft_type = request.form.get('craft_type')
+        project.proj_type = request.form.get('proj_type')
+        project.difficulty = request.form.get('difficulty')
+        project.free_pattern = bool(request.form.get('free_pattern'))
+        project.proj_status = request.form.get('proj_status') 
 
         db.session.commit()
 
@@ -249,13 +241,9 @@ def edit_update(update_id):
         flash(f"You must be logged in to edit a project.")
         return redirect('/')
     else:
-        update_name = request.form.get('update_name')
-        percent_done = int(request.form.get('percent_done'))
-        notes = request.form.get('notes')
-
-        update.update_name = update_name
-        update.percent_done = percent_done
-        update.notes = notes
+        update.update_name = request.form.get('update_name')
+        update.percent_done = int(request.form.get('percent_done'))
+        update.notes = request.form.get('notes')
 
         db.session.commit()
 
