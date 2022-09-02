@@ -181,7 +181,6 @@ def edit_project(proj_id):
     return redirect(f"/user_profile/{proj_id}")
 
 
-
 @app.route('/updates/<proj_id>', methods=['POST'])
 def create_update(proj_id):
     """Create a new project update."""
@@ -196,7 +195,6 @@ def create_update(proj_id):
     db.session.commit()
 
     flash(f"Created update {update_name}.")
-
     return redirect(f'/user_profile/{proj_id}')
 
 
@@ -229,6 +227,14 @@ def delete_update(update_id):
     flash(f"Deleted update {update_name}.")
     return redirect(f'/user_profile/{proj_id}')
 
+
+@app.route('/update/<update_id>/edit')
+def edit_udpate_form(update_id):
+    """View update edit form."""
+
+    update = crud.get_update_by_id(update_id)
+
+    return render_template('edit_update.html', update = update)
 
 
 @app.route('/filter')
