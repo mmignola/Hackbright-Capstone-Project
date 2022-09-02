@@ -72,6 +72,7 @@ def get_update_by_id(update_id):
 
     return Update.query.get(update_id)
 
+
 def get_updates_by_proj(proj_id):
     """Returns updates for a given project."""
 
@@ -86,7 +87,6 @@ def filter_projects(email, craft_type, proj_type, difficulty, proj_status):
     user = get_user_by_email(email)
 
     return Project.query.filter(Project.user == user, Project.craft_type.like(craft_type), Project.proj_type.like(proj_type), Project.difficulty.like(difficulty), Project.proj_status.like(proj_status)).all()
-
 
 
 

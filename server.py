@@ -124,54 +124,69 @@ def show_project_details(proj_id):
 def delete_project(proj_id):
     """Delete a project."""
 
+    logged_in_email = session.get('user_email')
     project = crud.get_proj_by_id(proj_id)
     proj_name = project.proj_name
     updates = crud.get_updates_by_proj(proj_id)
+    
+    if logged_in_email is None:
+        flash(f"You must be logged in to delete a project.")
+        return redirect('/')
 
-    db.session.delete(project)
-    db.session.commit()
+    elif logged_in_email != project.user.email:
+        flash("You can not delete another user's project.")
+        return redirect('/user_profile')
 
-    for update in updates:
-        db.session.delete(update)
+    else:
+        db.session.delete(project)
         db.session.commit()
 
-    flash(f"Deleted project {proj_name}.")
-    return redirect('/user_profile')
+        for update in updates:
+            db.session.delete(update)
+            db.session.commit()
+
+        flash(f"Deleted project {proj_name}.")
+        return redirect('/user_profile')
 
 
 @app.route('/user_profile/<proj_id>/edit')
 def edit_project_form(proj_id):
     """View project edit form."""
     
-    project = crud.get_proj_by_id(proj_id)
-
-    return render_template('edit_project.html', project = project)
-
-
-@app.route('/user_profile/<proj_id>/execute_edits', methods=["POST"])
-def edit_project(proj_id):
-    """Update the details of a project."""
-
     logged_in_email = session.get('user_email')
     project = crud.get_proj_by_id(proj_id)
 
     if logged_in_email is None:
         flash(f"You must be logged in to edit a project.")
         return redirect('/')
+
+    elif logged_in_email != project.user.email:
+        flash("You can not edit another user's project.")
+        return redirect('/user_profile')
+
     else:
-        project.proj_name = request.form.get('proj_name')
-        project.pattern_link = request.form.get('pattern_link')
-        project.craft_type = request.form.get('craft_type')
-        project.proj_type = request.form.get('proj_type')
-        project.difficulty = request.form.get('difficulty')
-        project.free_pattern = bool(request.form.get('free_pattern'))
-        project.proj_status = request.form.get('proj_status') 
+        return render_template('edit_project.html', project = project)
 
-        db.session.commit()
 
-        flash(f"Edited project {project.proj_name}.")
+@app.route('/user_profile/<proj_id>/execute_edits', methods=["POST"])
+def edit_project(proj_id):
+    """Update the details of a project."""
 
-        return redirect(f"/user_profile/{proj_id}")
+    project = crud.get_proj_by_id(proj_id)
+
+    project.proj_name = request.form.get('proj_name')
+    project.pattern_link = request.form.get('pattern_link')
+    project.craft_type = request.form.get('craft_type')
+    project.proj_type = request.form.get('proj_type')
+    project.difficulty = request.form.get('difficulty')
+    project.free_pattern = bool(request.form.get('free_pattern'))
+    project.proj_status = request.form.get('proj_status') 
+
+    db.session.commit()
+
+    flash(f"Edited project {project.proj_name}.")
+
+    return redirect(f"/user_profile/{proj_id}")
 
 
 @app.route('/updates/<proj_id>', methods=['POST'])
