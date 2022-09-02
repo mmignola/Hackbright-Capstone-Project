@@ -4,6 +4,7 @@ import os
 import json
 from random import choice, randint
 from datetime import datetime
+from re import L
 
 import crud
 import model
@@ -56,7 +57,7 @@ for n in range(5):
         update = crud.create_update(project, update_name, percent_done, notes)
         model.db.session.add(update)
 
-# Creates my account and default projects
+# Creates my account and default projects and updates
 mads = crud.create_user('Madeleine', 'Mignola', 'madeleine.mignola@gmail.com', 'Catsnad12')
 model.db.session.add(mads)
 
@@ -67,5 +68,19 @@ tote_bag = crud.create_project(mads, 'https://www.youtube.com/watch?v=rcZKM9JUEw
 model.db.session.add(daisy_blanket)
 model.db.session.add(hue_shift)
 model.db.session.add(tote_bag)
+
+update1 = crud.create_update(daisy_blanket, 'Quarter done!', 25, 'Finished 20th granny square, officially a quarter done.')
+update2 = crud.create_update(daisy_blanket, 'Bought more yarn', 40, 'Ran out of yarn, bought 12 more skeins.')
+update3 = crud.create_update(daisy_blanket, 'Finished granny squares', 80, 'Finished crocheting all 80 granny squares, now just have to piece them together!')
+update4 = crud.create_update(daisy_blanket, 'Pieced together', 90, 'Pieced blanket together, next is doing the border.')
+update5 = crud.create_update(daisy_blanket, 'Border complete', 95, "Finished crocheting the border, all that's left is tying in ends!")
+update6 = crud.create_update(daisy_blanket, 'Finished blanket!!', 100, 'Blanket is totally completed!!')
+
+model.db.session.add(update1)
+model.db.session.add(update2)
+model.db.session.add(update3)
+model.db.session.add(update4)
+model.db.session.add(update5)
+model.db.session.add(update6)
 
 model.db.session.commit()
