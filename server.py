@@ -116,6 +116,11 @@ def show_project_details(proj_id):
     if logged_in_email is None:
         flash("You must be logged in to view projects.")
         return redirect('/')
+
+    elif logged_in_email != project.user.email:
+        flash("You can not view another user's project.")
+        return redirect('/user_profile')
+
     else:
         return render_template('project_details.html', project = project, updates = updates)
 
@@ -197,17 +202,24 @@ def edit_project(proj_id):
 def create_update(proj_id):
     """Create a new project update."""
 
-    project = crud.get_proj_by_id(proj_id)
-    update_name = request.form.get('update_name')
-    percent_done = int(request.form.get('percent_done'))
-    notes = request.form.get('notes')
+    logged_in_email = session.get('user_email')
 
-    update = crud.create_update(project, update_name, percent_done, notes)
-    db.session.add(update)
-    db.session.commit()
+    if logged_in_email is None:
+        flash(f"You must be logged in to create an update.")
+        return redirect('/')
 
-    flash(f"Created update {update_name}.")
-    return redirect(f'/user_profile/{proj_id}')
+    else:
+        project = crud.get_proj_by_id(proj_id)
+        update_name = request.form.get('update_name')
+        percent_done = int(request.form.get('percent_done'))
+        notes = request.form.get('notes')
+
+        update = crud.create_update(project, update_name, percent_done, notes)
+        db.session.add(update)
+        db.session.commit()
+
+        flash(f"Created update {update_name}.")
+        return redirect(f'/user_profile/{proj_id}')
 
 
 @app.route('/update/<update_id>')
@@ -221,6 +233,11 @@ def show_update_details(update_id):
     if logged_in_email is None:
         flash("You must be logged in to view project updates.")
         return redirect('/')
+
+    elif logged_in_email != update.project.user.email:
+        flash("You can not view another user's update.")
+        return redirect('/user_profile')
+
     else:
         return render_template('update_details.html', update = update)
 
