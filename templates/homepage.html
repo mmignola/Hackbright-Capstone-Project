@@ -1,40 +1,50 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<h1>Welcome!</h1>
 
+<div class="page-header">
+    <h1>Welcome!</h1>
+</div>
 
-<h2>Create an account</h2>
-    <form action="/users" method="POST">
-        <p>
-            First name <input type="text" name="fname">
-        </p>
-        <p>
-            Last name <input type="text" name="lname">
-        </p>
-        <p>
-            Email <input type="text" name="email">
-        </p>
-        <p>
-            Password <input type="text" name="password">
-        </p>
-        <p>
-            <input type="submit">
-        </p>
-    </form>
+<div class="form-block">
+    <div class="create-account">
+        <h2>Create an account</h2>
+            <form action="/users" method="POST">
+                <p>
+                    First name <input type="text" name="fname">
+                </p>
+                <p>
+                    Last name <input type="text" name="lname">
+                </p>
+                <p>
+                    Email <input type="text" name="email">
+                </p>
+                <p>
+                    Password <input type="text" name="password">
+                </p>
+                <p>
+                    <input type="submit">
+                </p>
+            </form>
+    </div>
+</div>
 
+<div class="form-block">
+    <div class="log-in">
+        <h2>Log In</h2>
+            <form action="/login" method="POST">
+                <p>
+                    Email <input type="text" name="email">
+                </p>
+                <p>
+                    Password <input type="text" name="password">
+                </p>
+                <p>
+                    <input type="submit">
+                </p>
+            </form>
+    </div>
+</div>
 
-<h2>Log In</h2>
-    <form action="/login" method="POST">
-        <p>
-            Email <input type="text" name="email">
-        </p>
-        <p>
-            Password <input type="text" name="password">
-        </p>
-        <p>
-            <input type="submit">
-        </p>
-    </form>
 
 {% endblock %}

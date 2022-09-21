@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<h1>{{ update.update_name }}</h1>
 
-<form action="/update/{{ update.update_id }}/execute_edits" method="POST">
-    <p>Update name <input type="text" name="update_name" </p>
-    <p>Percent done <input type="number" name="percent_done" min="0" max="100" </p>
-    <p><label for="notes">Notes</label></p>
-        <textarea name="notes" rows="4" cols="50"></textarea>
+<div class="page-header">
+    <h1>{{ update.update_name }}</h1>
+</div>
 
-    <p><input type="submit"></p>
-</form>
+<div class="form-block">
+    <form action="/update/{{ update.update_id }}/execute_edits" method="POST">
+        <p>Update name <input type="text" name="update_name" </p>
+        <p>Percent done <input type="number" name="percent_done" min="0" max="100" </p>
+        <p><label for="notes">Notes</label></p>
+            <textarea name="notes" rows="4" cols="50"></textarea>
 
+        <p><input type="submit"></p>
+    </form>
+</div>
 
 {% endblock %}

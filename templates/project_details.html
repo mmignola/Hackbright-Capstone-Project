@@ -1,43 +1,55 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<h1>{{ project.proj_name }}</h1>
 
-<a href="{{ project.pattern_link }}">Pattern Link</a>
-<p>Craft: {{ project.craft_type }}</p>
-<p>Project type: {{ project.proj_type }}</p>
-<p>Difficulty: {{ project.difficulty }}</p>
-<p>Free or paid: 
-    {% if project.free_pattern == True %}
-    Free
-    {% else %}
-    Paid
-    {% endif %} </p>
-<p>Project status: {{ project.proj_status }}</p>
+<div class="page-header">
+   <h1>{{ project.proj_name }}</h1>
+</div>
 
-<p><a href="/user_profile">Back to profile</a></p>
-<p><a href="/user_profile/{{ project.proj_id }}/edit">Edit project</a></p>
-<p><a href="/user_profile/{{ project.proj_id }}/delete">Delete project</a></p>
+<div class="details">
+    <a href="{{ project.pattern_link }}">Pattern Link</a>
+    <p>Craft: {{ project.craft_type }}</p>
+    <p>Project type: {{ project.proj_type }}</p>
+    <p>Difficulty: {{ project.difficulty }}</p>
+    <p>Free or paid: 
+        {% if project.free_pattern == True %}
+        Free
+        {% else %}
+        Paid
+        {% endif %} </p>
+    <p>Project status: {{ project.proj_status }}</p>
+</div>
 
-<h2>Create update</h2>
-    <form action="/updates/{{ project.proj_id }}" method="POST">
-        <p>Update name <input type="text" name="update_name" </p>
-        <p>Percent done <input type="number" name="percent_done" min="0" max="100" </p>
-        <p><label for="notes">Notes</label></p>
-            <textarea name="notes" rows="4" cols="50"></textarea>
+<div class="redirect-links">
+    <p><a href="/user_profile">Back to profile</a></p>
+    <p><a href="/user_profile/{{ project.proj_id }}/edit">Edit project</a></p>
+    <p><a href="/user_profile/{{ project.proj_id }}/delete">Delete project</a></p>
+</div>
 
-        <p><input type="submit"></p>
-    </form>
+<div class="form-block">
+    <h2>Create update</h2>
+        <form action="/updates/{{ project.proj_id }}" method="POST">
+            <p>Update name <input type="text" name="update_name" </p>
+            <p>Percent done <input type="number" name="percent_done" min="0" max="100" </p>
+            <p><label for="notes">Notes</label></p>
+                <textarea name="notes" rows="4" cols="50"></textarea>
 
-<h2>Updates</h2>
-<ul>
-    {% for update in updates %}
-        <li>
-            <a href="/update/{{ update.update_id }}">
-                {{ update.update_name }}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+            <p><input type="submit"></p>
+        </form>
+</div>
+
+<div class="lists">
+    <h2>Updates</h2>
+    <ul>
+        {% for update in updates %}
+            <li>
+                <a href="/update/{{ update.update_id }}">
+                    {{ update.update_name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
 
 {% endblock %}

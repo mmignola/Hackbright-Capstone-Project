@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<h1>Welcome back, {{ user.fname }}!</h1>
 
-<h2>Create a new project</h2>
+<div class="page-header">
+    <h1>Welcome back, {{ user.fname }}!</h1>
+</div>
+
+<div class="form-block">
+
+    <h2>Create a new project</h2>
+
     <form action="/projects" method="POST">
         <p>Project name <input type="text" name="proj_name"></p>
         <p>Pattern link <input type="text" name="pattern_link"></p>
@@ -58,22 +64,26 @@
 
         <p><input type="submit"></p>
     </form>
+</div>
 
 
-<p><a href="/filter">Filter projects</a></p>
-<p><a href="/log_out">Log out</a></p>
+<div class="redirect-links">
+    <p><a href="/filter">Filter projects</a></p>
+    <p><a href="/log_out">Log out</a></p>
+</div>
 
 
-<h2>All projects</h2>
-<ul>
-{% for project in projects %}
-    <li>
-        <a href="/user_profile/{{ project.proj_id }}">
-            {{ project.proj_name }}
-        </a>
-    </li>
-{% endfor %}
-</ul>
-
+<div class="lists">
+    <h2>All projects</h2>
+    <ul>
+    {% for project in projects %}
+        <li>
+            <a href="/user_profile/{{ project.proj_id }}">
+                {{ project.proj_name }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
 
 {% endblock %}

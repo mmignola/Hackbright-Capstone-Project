@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<h1>{{ update.update_name }}</h1>
-<p>Progress: {{ update.percent_done }}%</p>
-<p>Notes: {{ update.notes }}</p>
 
-<p><a href="/user_profile/{{ update.project.proj_id }}">Back to project</a></p>
-<p><a href="/update/{{ update.update_id }}/edit">Edit update</a></p>
-<p><a href="/update/{{ update.update_id }}/delete">Delete update</a></p>
+<div class="page-header">
+    <h1>{{ update.update_name }}</h1>
+</div>
 
+<div class="details">
+    <p>Progress: {{ update.percent_done }}%</p>
+    <p>Notes: {{ update.notes }}</p>
+</div>
 
+<div class="redirect-links">
+    <p><a href="/user_profile/{{ update.project.proj_id }}">Back to project</a></p>
+    <p><a href="/update/{{ update.update_id }}/edit">Edit update</a></p>
+    <p><a href="/update/{{ update.update_id }}/delete">Delete update</a></p>
+</div>
 
 {% endblock %}

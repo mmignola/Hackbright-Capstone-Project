@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<h2>Filter projects</h2>
+
+<div class="page-header">
+    <h2>Filter projects</h2>
+</div>
+
+<div class="form-block">
     <form action="/filter_results" method="POST">
         
         <p><label for="craft_type">Type of craft </label>
@@ -41,16 +46,6 @@
                 <option value="Expert">Expert</option>
             </select></p>
 
-        <!-- <p>Free or paid pattern 
-        <input type="radio" name="free_pattern" value="True" id="free_pattern">
-        <label for="free_pattern">Free</label>
-        
-        <input type="radio" name="free_pattern" value="False" id="paid_pattern">
-        <label for="paid_pattern">Paid</label></p>
-
-        <input type="radio" name="free_pattern" value="Any" id="free_or_paid">
-        <label for="free_or_paid">Either</label></p> -->
-
         <p><label for="proj_status">Project status </label>
             <select name="proj_status" id="proj_status">
                 <option value="%%">Any</option>
@@ -61,5 +56,6 @@
 
         <p><input type="submit"></p>
     </form>
+</div>
 
 {% endblock %}

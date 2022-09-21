@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<h2>Edit {{ project.proj_name }}</h2>
+
+<div class="page-header">
+    <h2>Edit {{ project.proj_name }}</h2>
+</div>
+
+<div class="form-block">
     <form action="/user_profile/{{ project.proj_id }}/execute_edits" method="POST">
         <p>Project name <input type="text" name="proj_name"></p>
         <p>Pattern link <input type="text" name="pattern_link"></p>
@@ -56,6 +61,6 @@
 
         <p><input type="submit"></p>
     </form>
-
+</div>
 
 {% endblock %}
