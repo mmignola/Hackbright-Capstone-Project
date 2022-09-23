@@ -15,6 +15,11 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     """View homepage."""
 
+    logged_in_email = session.get('user_email')
+
+    if logged_in_email:
+        return redirect('/user_profile')
+
     return render_template('homepage.html')
 
 
