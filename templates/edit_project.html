@@ -6,7 +6,7 @@
     <h1>Edit {{ project.proj_name }}</h1>
 </div>
 
-<div class="form-block">
+<div class="float-child">
     <form action="/user_profile/{{ project.proj_id }}/execute_edits" method="POST">
         <p>Project name <input type="text" name="proj_name"></p>
         <p>Pattern link <input type="text" name="pattern_link"></p>
@@ -61,6 +61,10 @@
 
         <p><input type="submit"></p>
     </form>
+</div>
+
+<div class="redirect-links">
+    <p><a href="/user_profile/{{ project.proj_id }}">Back to project</a></p>
 </div>
 
 {% endblock %}

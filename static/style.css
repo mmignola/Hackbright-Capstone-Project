@@ -5,6 +5,7 @@ body {
 
 p {
     font-size: 18px;
+    line-height: 0.8;
 }
 
 h1 {
@@ -39,19 +40,23 @@ h2 {
 }
 
 
-.form-block {
-    display: inline-block;
-    width: 50%;
-    float: left;
-    padding: 20px;
-}
-
-
 .float-child {
     display: inline-block;
     padding: 20px;
     width: 40%;
     vertical-align: top;
-
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+    line-height: 1.5;
+}
+
+.redirect-links {
+    padding: 20px;
+}
+
+.details {
+    padding: 20px;
+}

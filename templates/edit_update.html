@@ -3,10 +3,10 @@
 
 
 <div class="page-header">
-    <h1>{{ update.update_name }}</h1>
+    <h1>Edit update {{ update.update_name }}</h1>
 </div>
 
-<div class="form-block">
+<div class="float-child">
     <form action="/update/{{ update.update_id }}/execute_edits" method="POST">
         <p>Update name <input type="text" name="update_name" </p>
         <p>Percent done <input type="number" name="percent_done" min="0" max="100" </p>
@@ -15,6 +15,10 @@
 
         <p><input type="submit"></p>
     </form>
+</div>
+
+<div class="redirect-links">
+    <p><a href="/update/{{ update.update_id }}">Back to update</a></p>
 </div>
 
 {% endblock %}
