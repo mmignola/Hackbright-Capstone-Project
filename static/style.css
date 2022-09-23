@@ -16,6 +16,15 @@ h2 {
     font-size: 28px;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #985f99;
+}
+
 .page-top {
     background-color: floralwhite;
     padding: 20px;
@@ -55,8 +64,15 @@ ul {
 
 .redirect-links {
     padding: 20px;
+    text-decoration: underline;
 }
 
 .details {
     padding: 20px;
+}
+
+
+.flash-msg {
+    padding: 20px;
+    color:#985f99;
 }
