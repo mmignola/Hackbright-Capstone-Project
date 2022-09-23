@@ -1,3 +1,57 @@
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: serif;
+    background-color: white;
 }
+
+p {
+    font-size: 18px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+.page-top {
+    background-color: floralwhite;
+    padding: 20px;
+}
+
+.site-name {
+    color: #985f99;
+    display: inline-block;
+
+}
+
+.log-out {
+    color: #985f99;
+    display: inline-block;
+    float: right;
+
+}
+
+.page-header {
+    font-size: 14px;
+    padding: 20px;
+}
+
+
+.form-block {
+    display: inline-block;
+    width: 50%;
+    float: left;
+    padding: 20px;
+}
+
+
+.float-child {
+    display: inline-block;
+    padding: 20px;
+    width: 40%;
+    vertical-align: top;
+
+}
+

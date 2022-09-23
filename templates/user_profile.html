@@ -6,84 +6,85 @@
     <h1>Welcome back, {{ user.fname }}!</h1>
 </div>
 
-<div class="form-block">
+<div class="float-container">
+    <div class="float-child">
 
-    <h2>Create a new project</h2>
+        <h2>Create a new project</h2>
 
-    <form action="/projects" method="POST">
-        <p>Project name <input type="text" name="proj_name"></p>
-        <p>Pattern link <input type="text" name="pattern_link"></p>
+        <form action="/projects" method="POST">
+            <p>Project name <input type="text" name="proj_name"></p>
+            <p>Pattern link <input type="text" name="pattern_link"></p>
 
-        <p><label for="craft_type">Type of craft </label>
-        <select name="craft_type" id="craft_type">
-            <option value="Crocheting">Crocheting</option>
-            <option value="Cross stitching">Cross stitching</option>
-            <option value="Embroidery">Embroidery</option>
-            <option value="Knitting">Knitting</option>
-            <option value="Quilting">Quilting</option>
-            <option value="Sewing">Sewing</option>
-            <option value="Other">Other</option>
-        </select></p>
-
-        <p><label for="proj_type">Type of project </label>
-        <select name="proj_type" id="proj_type">
-            <option value="Bag">Bag</option>
-            <option value="Blanket">Blanket</option>
-            <option value="Dress">Dress</option>
-            <option value="Gloves">Gloves</option>
-            <option value="Hat">Hat</option>
-            <option value="Pants">Pants</option>
-            <option value="Plush">Plush</option>
-            <option value="Shirt">Shirt</option>
-            <option value="Socks">Socks</option>
-            <option value="Sweater">Sweater</option>
-            <option value="Other">Other</option>
-        </select></p>
-
-        <p><label for="difficulty">Difficulty </label>
-            <select name="difficulty" id="difficulty">
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Hard">Hard</option>
-                <option value="Expert">Expert</option>
+            <p><label for="craft_type">Type of craft </label>
+            <select name="craft_type" id="craft_type">
+                <option value="Crocheting">Crocheting</option>
+                <option value="Cross stitching">Cross stitching</option>
+                <option value="Embroidery">Embroidery</option>
+                <option value="Knitting">Knitting</option>
+                <option value="Quilting">Quilting</option>
+                <option value="Sewing">Sewing</option>
+                <option value="Other">Other</option>
             </select></p>
 
-        <p>Free or paid pattern 
-        <input type="radio" name="free_pattern" value="True" id="free_pattern">
-        <label for="free_pattern">Free</label>
-        
-        <input type="radio" name="free_pattern" value="False" id="paid_pattern">
-        <label for="paid_pattern">Paid</label></p>
-
-        <p><label for="proj_status">Project status </label>
-            <select name="proj_status" id="proj_status">
-                <option value="Planned">Planned</option>
-                <option value="In progress">In progress</option>
-                <option value="Complete">Complete</option>
+            <p><label for="proj_type">Type of project </label>
+            <select name="proj_type" id="proj_type">
+                <option value="Bag">Bag</option>
+                <option value="Blanket">Blanket</option>
+                <option value="Dress">Dress</option>
+                <option value="Gloves">Gloves</option>
+                <option value="Hat">Hat</option>
+                <option value="Pants">Pants</option>
+                <option value="Plush">Plush</option>
+                <option value="Shirt">Shirt</option>
+                <option value="Socks">Socks</option>
+                <option value="Sweater">Sweater</option>
+                <option value="Other">Other</option>
             </select></p>
 
-        <p><input type="submit"></p>
-    </form>
+            <p><label for="difficulty">Difficulty </label>
+                <select name="difficulty" id="difficulty">
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Hard">Hard</option>
+                    <option value="Expert">Expert</option>
+                </select></p>
+
+            <p>Free or paid pattern 
+            <input type="radio" name="free_pattern" value="True" id="free_pattern">
+            <label for="free_pattern">Free</label>
+            
+            <input type="radio" name="free_pattern" value="False" id="paid_pattern">
+            <label for="paid_pattern">Paid</label></p>
+
+            <p><label for="proj_status">Project status </label>
+                <select name="proj_status" id="proj_status">
+                    <option value="Planned">Planned</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Complete">Complete</option>
+                </select></p>
+
+            <p><input type="submit"></p>
+        </form>
+    </div>
+
+
+    <div class="float-child">
+        <h2>All projects</h2>
+        <ul>
+        {% for project in projects %}
+            <li>
+                <a href="/user_profile/{{ project.proj_id }}">
+                    {{ project.proj_name }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 </div>
 
 
 <div class="redirect-links">
     <p><a href="/filter">Filter projects</a></p>
-    <p><a href="/log_out">Log out</a></p>
-</div>
-
-
-<div class="lists">
-    <h2>All projects</h2>
-    <ul>
-    {% for project in projects %}
-        <li>
-            <a href="/user_profile/{{ project.proj_id }}">
-                {{ project.proj_name }}
-            </a>
-        </li>
-    {% endfor %}
-    </ul>
 </div>
 
 {% endblock %}
