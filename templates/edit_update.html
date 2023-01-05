@@ -6,9 +6,13 @@
     <h1>Edit update {{ update.update_name }}</h1>
 </div>
 
-<div class="float-child">
+<div class="redirect-links">
+    <p><a href="/update/{{ update.update_id }}">Back to update</a></p>
+</div>
+
+<div class="deets">
     <form action="/update/{{ update.update_id }}/execute_edits" method="POST">
-        <p>Update name <input type="text" name="update_name" </p>
+        <p>Update name <input type="text" name="update_name" ></p>
         <p>Percent done <input type="number" name="percent_done" min="0" max="100" </p>
         <p><label for="notes">Notes</label></p>
             <textarea name="notes" rows="4" cols="50"></textarea>
@@ -17,8 +21,5 @@
     </form>
 </div>
 
-<div class="redirect-links">
-    <p><a href="/update/{{ update.update_id }}">Back to update</a></p>
-</div>
 
 {% endblock %}

@@ -1,6 +1,7 @@
 body {
     font-family: serif;
-    background-color: white;
+    background-color: #FFE8D6;
+    margin: 0px;
 }
 
 p {
@@ -22,22 +23,22 @@ a {
 }
 
 a:hover {
-    color: #985f99;
+    color: #6B705C;
 }
 
 .page-top {
-    background-color: floralwhite;
+    background-color: #A5A58D;
     padding: 20px;
 }
 
 .site-name {
-    color: #985f99;
+    color: #FFE8D6;
     display: inline-block;
 
 }
 
 .log-out {
-    color: #985f99;
+    color: #FFE8D6;
     display: inline-block;
     float: right;
 
@@ -46,33 +47,95 @@ a:hover {
 .page-header {
     font-size: 14px;
     padding: 20px;
+    text-align: center;
 }
 
+.float-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .float-child {
+    text-align: center;
     display: inline-block;
+    width: 25%;
+    margin: 1%;
+    border: 10px solid #6B705C;
+    border-radius: 15px;
+    background-color: #A5A58D;
+}
+
+.deets {
+    text-align: center;
+    width: 53%;
+    margin: auto;
+    margin-bottom: 1%;
+    border: 10px solid #6B705C;
+    border-radius: 15px;
+    background-color: #A5A58D;
+}
+
+.float-header {
+    text-align: center;
+    color: #FFE8D6;
+    background: #6B705C;
     padding: 20px;
-    width: 40%;
-    vertical-align: top;
+    margin: 0;
 }
 
 ul {
     list-style-type: none;
     padding: 0;
     line-height: 1.5;
+    font-size: 18px;
 }
 
 .redirect-links {
-    padding: 20px;
     text-decoration: underline;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .details {
     padding: 20px;
 }
 
-
 .flash-msg {
-    padding: 20px;
-    color:#985f99;
+    color:#6B705C;
+    margin-left: 20px;
+}
+
+form {
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: left;
+}
+
+input[type=text], select {
+    border: 0;
+    border-radius: 4px;
+    width: 50%;
+    float: right;
+}
+
+input[type=number], select {
+    border: 0;
+    border-radius: 4px;
+    width: 50%;
+    float: right;
+}
+
+textarea {
+    border: 0;
+    border-radius: 4px;
+
+}
+
+input[type=submit] {
+    border: 0;
+    border-radius: 4px;
+    width: 120px;
+    display: block;
+    margin: 0 auto;
 }

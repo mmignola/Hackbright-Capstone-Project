@@ -6,32 +6,35 @@
    <h1>{{ project.proj_name }}</h1>
 </div>
 
-<div class="details">
-            <h2>Project details</h2>
-            <a href="{{ project.pattern_link }}">Pattern Link</a>
-            <p>Craft: {{ project.craft_type }}</p>
-            <p>Project type: {{ project.proj_type }}</p>
-            <p>Difficulty: {{ project.difficulty }}</p>
-            <p>Free or paid: 
-                {% if project.free_pattern == True %}
-                Free
-                {% else %}
-                Paid
-                {% endif %} </p>
-            <p>Project status: {{ project.proj_status }}</p>
-        </div>  
-
 <div class="redirect-links">
     <p><a href="/user_profile">Back to profile</a></p>
     <p><a href="/user_profile/{{ project.proj_id }}/edit">Edit project</a></p>
     <p><a href="/user_profile/{{ project.proj_id }}/delete">Delete project</a></p>
 </div>
 
-<div class="float-container">
+<div class="float-parent">
+    <div class="deets">
+        <h2 class="float-header">Project details</h2>
+        <p></p>
+        <a href="{{ project.pattern_link }}">Pattern Link</a>
+        <p>Craft: {{ project.craft_type }}</p>
+        <p>Project type: {{ project.proj_type }}</p>
+        <p>Difficulty: {{ project.difficulty }}</p>
+        <p>Free or paid: 
+            {% if project.free_pattern == True %}
+            Free
+            {% else %}
+            Paid
+            {% endif %} </p>
+        <p>Project status: {{ project.proj_status }}</p>
+    </div>  
+</div>
 
+<div class="float-container">
+    
     <div class="float-child">
         <div class="lists">
-            <h2>Updates</h2>
+            <h2 class="float-header">Updates</h2>
             <ul>
                 {% for update in updates %}
                     <li>
@@ -40,13 +43,17 @@
                         </a>
                     </li>
                 {% endfor %}
+                
+                {% if not updates %}
+                    There are no updates for this project yet.
+                {% endif%}
             </ul>
         </div>          
     </div>
 
     <div class="float-child">
         <div class="form-block">
-            <h2>Create update</h2>
+            <h2 class="float-header">Create update</h2>
                 <form action="/updates/{{ project.proj_id }}" method="POST">
                     <p>Update name <input type="text" name="update_name" </p>
                     <p>Percent done <input type="number" name="percent_done" min="0" max="100" </p>

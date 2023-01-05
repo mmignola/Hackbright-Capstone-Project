@@ -6,7 +6,12 @@
     <h2>Filter projects</h2>
 </div>
 
-<div class="float-child">
+<div class="redirect-links">
+    <p><a href="/user_profile">Back to profile</a></p>
+</div>
+
+<div class="deets">
+    <h2 class="float-header">Select filters</h2>
     <form action="/filter_results" method="POST">
         
         <p><label for="craft_type">Type of craft </label>
@@ -56,10 +61,6 @@
 
         <p><input type="submit"></p>
     </form>
-</div>
-
-<div class="redirect-links">
-    <p><a href="/user_profile">Back to profile</a></p>
 </div>
 
 {% endblock %}

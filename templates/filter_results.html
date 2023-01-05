@@ -6,8 +6,12 @@
     <h2>Filter results</h2>
 </div>
 
+<div class="redirect-links">
+    <p><a href="/filter">Back to filter</a></p>
+    <p><a href="/user_profile">Back to profile</a></p>
+</div>
 
-<div class="float-child">
+<div class="deets">
     <ul>
     {% for filtered_project in filtered_projects %}
         <li>
@@ -17,11 +21,6 @@
         </li>
     {% endfor %}
     </ul>
-</div>
-
-<div class="redirect-links">
-    <p><a href="/filter">Back to filter</a></p>
-    <p><a href="/user_profile">Back to profile</a></p>
 </div>
 
 {% endblock %}
