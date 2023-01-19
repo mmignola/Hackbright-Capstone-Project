@@ -80,7 +80,7 @@ def profile():
 
 @app.route('/projects', methods=["POST"])
 def create_project():
-    """Create a new project."""
+    """Create a new project.""" 
 
     logged_in_email = session.get('user_email')
 

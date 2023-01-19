@@ -1,5 +1,5 @@
 body {
-    font-family: serif;
+    font-family: Georgia, serif;
     background-color: #FFE8D6;
     margin: 0px;
 }
@@ -50,10 +50,13 @@ a:hover {
     text-align: center;
 }
 
+span {
+    color: #FFE8D6;
+}
+
 .float-container {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .float-child {
@@ -64,11 +67,12 @@ a:hover {
     border: 10px solid #6B705C;
     border-radius: 15px;
     background-color: #A5A58D;
+    height: fit-content;
 }
 
 .deets {
     text-align: center;
-    width: 53%;
+    width: 30%;
     margin: auto;
     margin-bottom: 1%;
     border: 10px solid #6B705C;
@@ -126,16 +130,41 @@ input[type=number], select {
     float: right;
 }
 
-textarea {
-    border: 0;
-    border-radius: 4px;
-
-}
-
 input[type=submit] {
     border: 0;
     border-radius: 4px;
     width: 120px;
     display: block;
     margin: 0 auto;
+}
+
+input[type=password], select {
+    border: 0;
+    border-radius: 4px;
+    width: 50%;
+    float: right;
+}
+
+.radio-buttons {
+    float: right;
+    vertical-align: top;
+    display: block;
+    font-size: 18px;
+
+}
+
+.radio-container {
+    float: right;
+    display: inline-block;
+}
+
+label {
+    font-size: 18px;
+}
+
+textarea {
+    border: 0;
+    border-radius: 4px;
+    width: 100%;
+
 }
