@@ -50,7 +50,19 @@ Run server.py:
 ```
 Log in with email: user0@test.com and password: test to see sample user!
 
-### Future Features
+
+## Project Pictures 
+
+<img width="317" alt="Screen Shot 2023-03-05 at 1 25 28 PM" src="https://user-images.githubusercontent.com/101783138/222986957-0448181e-9409-444f-bb8a-ec3203b1e3d1.png">
+
+Some squares from the flower granny square blanket! (The updates are a lie, it's only half done.)
+
+<img width="340" alt="Screen Shot 2023-03-05 at 1 25 38 PM" src="https://user-images.githubusercontent.com/101783138/222986966-b2745146-979c-4722-a972-ec1f1d4ce1c8.png"> <img width="475" alt="Screen Shot 2023-03-05 at 1 25 47 PM" src="https://user-images.githubusercontent.com/101783138/222986970-9c5f55d4-5e85-414a-a789-8157cb4cec51.png">
+
+The simple pullover sweater in two different yarns, one finished and one in progress :)
+
+
+## Future Features
 When I completed this project at Hackbright Academy, there were a number of features I would have liked to include if I had had more time. Since then, I have returned to this project to re-do all the CSS and improve the user interface. Other features I may later add include:
 
  - Ability for users to add photos to their projects and updates
