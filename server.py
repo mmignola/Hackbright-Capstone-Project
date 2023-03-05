@@ -1,8 +1,8 @@
 """Server for project organization app."""
 
 from flask import Flask, render_template, request, flash, session, redirect
-from model import connect_to_db, db
-import crud
+from crafttracker.model import connect_to_db, db
+import crafttracker.crud as crud
 
 from jinja2 import StrictUndefined
 
